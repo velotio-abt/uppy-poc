@@ -1,0 +1,23 @@
+{
+  "name": "uppy-poc",
+  "version": "1.0.0",
+  "description": "File upload using uppy POC",
+  "scripts": {
+    "client:dev": "yarn --cwd client dev",
+    "client:build": "yarn --cwd client build",
+    "client:lint": "yarn --cwd client lint",
+    "client:preview": "yarn --cwd client preview",
+
+    "server:start": "npm --prefix server start",
+
+    "dev": "concurrently -n client,server -c blue,green \"yarn --cwd client dev\" \"npm --prefix server start\"",
+    "build": "yarn --cwd client build",
+
+    "install:all": "npm install && npm --prefix server install && yarn --cwd client install"
+  },
+  "devDependencies": {
+    "concurrently": "^8.0.0"
+  },
+  "author": "someone",
+  "license": "ISC"
+}
