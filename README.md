@@ -1,3 +1,6 @@
+### Description
+A simple POC to use Uppy states and events to create a custom UI
+
 ### Install
 - `nvm use` (switch to required nvm version)
 - `npm install yarn`
