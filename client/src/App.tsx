@@ -4,7 +4,7 @@ import { Dashboard } from '@uppy/react';
 import XHRUpload from '@uppy/xhr-upload';
 import Dropbox from '@uppy/dropbox';
 import GoogleDrive from '@uppy/google-drive';
-import CustomDropzone from './components/CustomDropzone';
+import CustomUploader from './components/CustomUploader';
 
 import './App.css'
 import '@uppy/core/dist/style.min.css';
@@ -24,7 +24,7 @@ const App = () => {
       <div className="card">
         <Dashboard uppy={uppy} />
       </div>
-      <CustomDropzone uppy={uppy} />
+      <CustomUploader uppy={uppy} />
     </>
   )
 }
