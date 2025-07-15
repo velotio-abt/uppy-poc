@@ -2,9 +2,10 @@ import { useState } from 'react';
 import Uppy from '@uppy/core';
 import { Dashboard } from '@uppy/react';
 import XHRUpload from '@uppy/xhr-upload';
+// import Tus from '@uppy/tus';
+
 import Dropbox from '@uppy/dropbox';
 import GoogleDrive from '@uppy/google-drive';
-import CustomUploader from './components/CustomUploader';
 
 import './App.css'
 import '@uppy/core/dist/style.min.css';
@@ -22,9 +23,8 @@ const App = () => {
     <>
       <h1>Uppy POC</h1>
       <div className="card">
-        <Dashboard uppy={uppy} />
+        <Dashboard uppy={uppy} plugins={['GoogleDrive', 'Dropbox']} />
       </div>
-      <CustomUploader uppy={uppy} />
     </>
   )
 }
