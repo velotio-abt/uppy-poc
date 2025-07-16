@@ -4,6 +4,9 @@ import upload from '@/middlewares/multerMiddleware';
 
 export const uploadFiles = (req: Request, res: Response) => {
   upload(req, res, (err: any) => {
+    // console.log('reached here >>>>>>>>>>>>>>>>>>>>>>>>>')
+    // const filename = req.headers['x-companion-metadata']
+    // console.log('filename ========> ', filename)
     if (err instanceof multer.MulterError) {
       return res.status(400).json({ message: err.message });
     } else if (err) {

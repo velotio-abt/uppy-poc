@@ -14,6 +14,7 @@ import '@uppy/drag-drop/dist/style.min.css';
 
 const App = () => {
   const [uppy] = useState(() => new Uppy()
+    // .use(Tus, { endpoint: '<tus server url>/files', chunkSize:  2*1024*1024 })
     .use(XHRUpload, { endpoint: 'http://localhost:3000/upload' })
     .use(Dropbox, { companionUrl: 'http://localhost:3000/companion' })
     .use(GoogleDrive, { companionUrl: 'http://localhost:3000/companion' })
@@ -23,7 +24,7 @@ const App = () => {
     <>
       <h1>Uppy POC</h1>
       <div className="card">
-        <Dashboard uppy={uppy} plugins={['GoogleDrive', 'Dropbox']} />
+        <Dashboard uppy={uppy} plugins={['GoogleDrive', 'Dropbox']} showProgressDetails />
       </div>
     </>
   )

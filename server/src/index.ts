@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-import session from "express-session"
+import session from "express-session";
 import dotenv from "dotenv";
 import cors from "cors";
 import path from "path";
@@ -7,27 +7,28 @@ import * as companion from "@uppy/companion";
 import uploadRoutes from "@/routes/uploadRoutes";
 import errorMiddleware from "@/middlewares/errorMiddleware";
 import { companionOptions, corsOptions } from "@/config/constants";
-import { uploadImage } from "./middlewares/multerCompanionMiddleware";
+import { uploadImage } from "@/middlewares/multerCompanionMiddleware";
 
 dotenv.config();
 
 const app = express();
 const port = process.env.PORT;
 
-// Middlewares
-
+// Setup companion
 app.use(cors(corsOptions));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(session({
+app.use(
+  session({
     secret: "secret-key",
-    resave: true,
-    saveUninitialized: true,
-}));
-
-console.log(companion, companionOptions)
+    resave: false,
+    saveUninitialized: false,
+  })
+);
 
 const { app: companionApp, emitter } = companion.app(companionOptions);
+
+app.use("/companion", companionApp, uploadImage, (req, res) => {
+  console.log("debug....", req.body);
+});
 
 emitter.on("upload-start", ({ token }: any) => {
   function onUploadEvent({ action, payload }: any) {
@@ -44,13 +45,11 @@ emitter.on("upload-start", ({ token }: any) => {
   emitter.on(token, onUploadEvent);
 });
 
-app.use("/companion", companionApp, uploadImage, (req, res) => {
-  console.log('companion req ======================++>', req);
-  console.log('companion res ======================++>', res);
-});
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // serve static files in uploads folder
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+app.use("/view_uploads", express.static(path.join(__dirname, "uploads")));
 
 app.use("/upload", uploadRoutes);
 
