@@ -31,13 +31,7 @@ export const companionOptions = {
 export const corsOptions = {
   origin: "*",
   credentials: true,
-  allowedHeaders: [
-    "Authorization",
-    "Origin",
-    "Content-Type",
-    "Accept",
-    "uppy-auth-token",
-  ],
+  allowedHeaders: "*",
   methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE", "OPTIONS"],
   optionsSuccessStatus: 200,
 };
