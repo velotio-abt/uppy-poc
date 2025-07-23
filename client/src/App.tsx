@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import Uppy from '@uppy/core';
 import { Dashboard } from '@uppy/react';
-import XHRUpload from '@uppy/xhr-upload';
-// import Tus from '@uppy/tus';
+// import XHRUpload from '@uppy/xhr-upload';
+import Tus from '@uppy/tus';
 
 import Dropbox from '@uppy/dropbox';
 import GoogleDrive from '@uppy/google-drive';
@@ -14,10 +14,11 @@ import '@uppy/drag-drop/dist/style.min.css';
 
 const App = () => {
   const [uppy] = useState(() => new Uppy()
-    // .use(Tus, { endpoint: '<tus server url>/files', chunkSize:  2*1024*1024 })
-    .use(XHRUpload, { endpoint: 'http://localhost:3000/upload' })
+    .use(Tus, { endpoint: '<tus server url>/files', chunkSize:  2*1024*1024 })
     .use(Dropbox, { companionUrl: 'http://localhost:3000/companion' })
-    .use(GoogleDrive, { companionUrl: 'http://localhost:3000/companion' })
+    .use(GoogleDrive, { companionUrl: 'http://localhost:3000/companion' }).on("complete", (res) => {
+      console.log('res = ', res);
+    })
   );
 
   return (

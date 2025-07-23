@@ -29,7 +29,7 @@ app.use(session({
 }));
 
 app.use((req, res, next) => {
-  console.log('session id ', req.sessionID)
+  console.log('session id ', req.sessionID);
   console.log('Session:', req.session);
   next();
 });

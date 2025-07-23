@@ -20,12 +20,15 @@ export const companionOptions = {
     protocol: "http",
     path: "/companion",
   },
-  uploadUrls: [`http://localhost:3000/upload`],
+  uploadUrls: [``],
   filePath: `${__dirname}/../uploads`,
   secret: "secret-key",
   streamingUpload: true,
   debug: true,
   corsOrigins: true, // Setting it to true treats any origin as a trusted one
+  tus: {
+    endpoint: "<tus server url>/files"
+  }
 };
 
 export const corsOptions = {
