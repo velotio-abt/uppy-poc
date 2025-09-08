@@ -14,6 +14,10 @@ export const companionOptions = {
       key: process.env.GOOGLE_DRIVE_APP_KEY,
       secret: process.env.GOOGLE_DRIVE_APP_SECRET,
     },
+    box: {
+      key: process.env.BOX_APP_KEY,
+      secret: process.env.BOX_APP_SECRET,
+    },
   },
   server: {
     host: `localhost:${port}`,
